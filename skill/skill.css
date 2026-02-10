@@ -1,0 +1,225 @@
+/* --- 1. STILIMI I PËRGJITHSHËM --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    overflow-x: hidden; /* Ndalon lëvizjen anësore të padëshiruar */
+}
+
+.min-vh-50 {
+    min-height: 500px;
+    padding: 10px;
+}
+
+#timer-display {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+/* --- 2. PROGRESS BAR --- */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#project-progress {
+    transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    font-weight: bold;
+    font-size: 0.85rem;
+    line-height: 25px;
+}
+
+/* --- 3. KARTAT E DETYRAVE (TASK CARDS) --- */
+.task-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    cursor: grab;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0,0,0,0.03);
+    position: relative;
+}
+
+.task-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+.border-danger {
+    animation: pulse-danger 2s infinite;
+}
+
+@keyframes pulse-danger {
+    0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+.task-date-display {
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: 500;
+    display: block;
+    margin-top: 8px;
+}
+
+.overdue-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    animation: flash-red 1s infinite alternate;
+}
+
+@keyframes flash-red {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0.7; transform: scale(0.95); }
+}
+
+.badge {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.border-start.border-4 {
+    border-left-width: 6px !important;
+}
+
+/* --- 4. KOLONAT (KANBAN) --- */
+.card {
+    border-radius: 15px !important;
+    border: none !important;
+}
+
+.card-header {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-bottom: none !important;
+    background: transparent;
+}
+
+.bg-light-subtle {
+    background-color: rgba(255, 193, 7, 0.08) !important;
+    border: 2px dashed #ffc107 !important;
+}
+
+/* --- 5. RESPONSIVITETI (I RI) --- */
+@media (max-width: 768px) {
+    /* Timeri dhe Navigacioni */
+    .navbar .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Inputet - i kthejmë në kolonë që të zënë të gjithë gjerësinë */
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+        box-shadow: none !important;
+    }
+    
+    .input-group > * {
+        border-radius: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .input-group button {
+        padding: 12px;
+    }
+
+    /* Hapësira midis kolonave në telefon */
+    .col-md-4 {
+        margin-bottom: 25px;
+    }
+
+    .min-vh-50 {
+        min-height: 300px;
+    }
+}
+
+/* --- 6. DARK MODE --- */
+body.dark-theme {
+    background-color: #0b0e14 !important;
+    color: #e0e0e0;
+}
+
+.dark-theme .card {
+    background-color: #151921 !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+}
+
+.dark-theme .task-card {
+    background-color: #1c222d !important;
+    color: #ffffff !important;
+    border: 1px solid #2d3444 !important;
+}
+
+.dark-theme .form-control, 
+.dark-theme .form-select {
+    background-color: #151921 !important;
+    border-color: #2d3444 !important;
+    color: white !important;
+}
+
+/* --- 7. FOOTER & STATISTIKAT --- */
+.hover-name {
+    transition: all 0.3s ease;
+    color: inherit;
+}
+
+.hover-name:hover {
+    color: #ffc107 !important;
+    letter-spacing: 1px;
+}
+
+.social-icon {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: scale(1.4) translateY(-5px);
+}
+
+.stat-card {
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Përshtatja e Footer-it për Dark Mode */
+.dark-theme footer {
+    background-color: #0b0e14 !important;
+    border-top: 1px solid #2d3444 !important;
+}
+
+.dark-theme .bg-white {
+    background-color: #151921 !important;
+    border-color: #2d3444 !important;
+}
+
+.dark-theme .text-muted {
+    color: #8a8f9d !important;
+}
+
+/* --- 8. ANIMACIONET --- */
+.animate__animated {
+    animation-duration: 0.8s;
+}
+
+.btn-sm.text-danger:hover {
+    transform: scale(1.3);
+}
