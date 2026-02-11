@@ -126,19 +126,19 @@
     <div class="container mt-5 animate__animated animate__fadeInUp">
         <div class="row text-center g-4">
             <div class="col-md-4">
-                <div class="p-3 bg-white rounded-4 shadow-sm border">
+                <div class="p-3 bg-white rounded-4 shadow-sm border stat-card">
                     <h6 class="text-muted mb-1">Efikasiteti</h6>
                     <h3 class="fw-bold text-primary" id="stat-efficiency">0%</h3>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="p-3 bg-white rounded-4 shadow-sm border">
+                <div class="p-3 bg-white rounded-4 shadow-sm border stat-card">
                     <h6 class="text-muted mb-1">Detyra të Kryera</h6>
                     <h3 class="fw-bold text-success" id="stat-done">0</h3>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="p-3 bg-white rounded-4 shadow-sm border">
+                <div class="p-3 bg-white rounded-4 shadow-sm border stat-card">
                     <h6 class="text-muted mb-1">Në Pritje</h6>
                     <h3 class="fw-bold text-warning" id="stat-pending">0</h3>
                 </div>
@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <footer class="mt-5 py-4 border-top bg-white dark-theme-footer">
+    <footer class="mt-5 py-4 border-top bg-white">
         <div class="container text-center">
             <p class="mb-3 text-muted">Developed with ❤️ by 
                 <a href="https://www.ensargashi.com" target="_blank" class="text-decoration-none fw-bold text-dark hover-name">
@@ -165,7 +165,16 @@
     </footer>
 
     <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
-
     <script src="skill/skill.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('skill/sw.js')
+                    .then(reg => console.log('SkillSync App Gati!'))
+                    .catch(err => console.error('SW Error:', err));
+            });
+        }
+    </script>
 </body>
 </html>
