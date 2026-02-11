@@ -357,4 +357,13 @@ function checkDeadlines() {
 }
 
 setInterval(checkDeadlines, 30000);
+
 window.onload = loadData;
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('skill/sw.js')
+      .then(reg => console.log('SkillSync App është gati!'))
+      .catch(err => console.log('Gabim në regjistrim:', err));
+  });
+}
